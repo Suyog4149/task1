@@ -10,7 +10,6 @@
 <div id="productList"></div>
 
 <script>
-  // Make a GET request to the API
   fetch('https://s3.amazonaws.com/open-to-cors/assignment.json')
     .then(response => {
       if (!response.ok) {
@@ -19,13 +18,10 @@
       return response.json();
     })
     .then(data => {
-      // Extract products object from the received data
       const productsObject = data.products;
 
-      // Convert the products object into an array
       const productsArray = Object.values(productsObject);
 
-      // Create a string to display the product information
       const productListHTML = productsArray.map(product => `
         <div>
           <strong>Title:</strong> ${product.title}<br>
@@ -36,7 +32,6 @@
         </div>
       `).join('');
 
-      // Display the product list in the browser
       document.getElementById('productList').innerHTML = productListHTML;
     })
     .catch(error => {
